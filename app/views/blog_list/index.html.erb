@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title || "Lipsums in Space?" %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  </style>
+</head>
+  <div id="wrap">
+    <div class="jumbotron header-image">
+      <nav role="navigation" class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+              <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <%= link_to "Lipsums in Space?", root_path, class: "navbar-brand" %>
+          </div>
+          <div id="navbarCollapse" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                  <li><%= link_to "Home", root_path %></li>
+                  <li><%= link_to "Blog", blog_path %></li>
+                  <li><%= link_to "About", about_path %></li>
+                  <%= form_tag search_path, :method => 'get', :class => "navbar-form navbar-left"  do %>
+                    <div class="form-group">
+                      <%= text_field_tag :search, params[:search], :class => "form-control" %>
+                    </div>
+                    <%= submit_tag "Search", :name => nil, :class => "btn btn-inverse"  %>
+                  <% end %>
+              </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Title in jumbotron -->
+      <div class="container">
+        <div class="row text-center top-margin headline">
+          <h1>Blogs</h1>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="row">
+        <% @most_recent_posts.each do |post| %>
+          <div>
+            <h3><%= link_to post.title, post_path(:id => post.id) %></h3>
+            <p><%= post.summary %></p>
+            <p>Posted on <%= post.created_at.strftime("%B %d, %Y") %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+
+
+  </div> <!-- end #wrap -->
+  <!-- footer -->
+  <div id="footer" class="top-margin">
+    <nav role="navigation" class="navbar navbar-inverse">
+      <div class="container">
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to "Home", root_path %></li>
+                <li><%= link_to "Blog", blog_path %></li>
+                <li><%= link_to "About", about_path %></li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</body>
+</html>
