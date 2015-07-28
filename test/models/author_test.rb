@@ -7,6 +7,7 @@ class AuthorTest < ActiveSupport::TestCase
              :body => "This is the long and boring body for the test post.",
              :summary => "Boring post"
              )
+    @second_post = Post.new(:title => "Second Post Title")
     @author = Author.new(:name => "Fake Author",
                :bio => "Not even a real person.")
   end
@@ -21,7 +22,10 @@ class AuthorTest < ActiveSupport::TestCase
     assert @author.posts.first == @post
   end
 
-
-
+  test "author can have many posts" do
+    @author.posts << @post
+    @author.posts << @second_post
+    assert_equal @author.posts.length, 2
+  end
 
 end

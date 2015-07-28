@@ -11,19 +11,19 @@ class PostTest < ActiveSupport::TestCase
                :bio => "Not even a real person.")
   end
 
-  test "posts should have an author" do
-    @author.posts << @post
-    assert_equal @post.author, @author
-  end
-
-  test "posts should have titles" do
+  test "posts must have titles" do
     @post = Post.new(:summary => "This post has no title.")
     assert_not @post.save, "Post saved without a title."
   end
 
-  test "posts should have bodies" do
+  test "posts must have bodies" do
     @post = Post.new(:summary => "This post has no body.")
     assert_not @post.save, "Post saved without a body."
+  end
+
+  test "posts should have an author" do
+    @author.posts << @post
+    assert_equal @post.author, @author
   end
 
 end

@@ -5,5 +5,4 @@ class Post < ActiveRecord::Base
   def self.most_recent_posts
     self.all.sort_by(&:created_at).reverse!
   end
-
 end
