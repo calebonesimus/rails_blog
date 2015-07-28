@@ -52,14 +52,14 @@
         <div class="col-md-8">
           <div class="row">
             <div class="col-md-12">
-              <p><%= @post.author %> Published on <%= @post.created_at.strftime("%B %d, %Y") %></p>
+              <p><%= @post.author.name %> published on <%= @post.created_at.strftime("%B %d, %Y") %></p>
             </div>
           </div>
           <%= @post.body.html_safe %>
         </div>
 
         <div class="col-md-4 text-center">
-          <h3><%= @post.author %></h3>
+          <h3><%= @post.author.name %></h3>
           <ul class="social-nav">
             <li><%= link_to "Twitter", "#" %></li>
             <li><%= link_to "Facebook", "#" %></li>

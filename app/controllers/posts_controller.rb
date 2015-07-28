@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
+
   def index
     @post = Post.most_recent_posts.first
     @title = @post.title
-    @other_posts = Post.most_recent_posts.reject { |post| post == @post }
+    @other_posts = Post.most_recent_posts.reject { |post| post == @post }.first(4)
     @ad = Ad.ad_list.sample
   end
 
