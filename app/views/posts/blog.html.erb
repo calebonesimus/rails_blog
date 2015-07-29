@@ -11,7 +11,7 @@
       <div>
         <h3><%= link_to post.title, post_path(:id => post.id) %></h3>
         <p><%= post.summary %></p>
-        <p>Posted on <%= post.created_at.strftime("%B %d, %Y") %></p>
+        <p>Posted by <%= post.author.name %> on <%= post.created_at.strftime("%B %d, %Y") %></p>
       </div>
     <% end %>
   </div>

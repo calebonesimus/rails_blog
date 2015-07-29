@@ -7,9 +7,7 @@ Rails.application.routes.draw do
 
   get 'search(/:search)' => 'search#search', as: :search
 
-  get 'authors/:id/posts' => 'authors#author_posts', as: :author
-
-  get 'authors' => 'authors#author_list'
+  get 'authors/:id/posts' => 'authors#author_posts', as: :author_posts
 
   root 'posts#index'
 
