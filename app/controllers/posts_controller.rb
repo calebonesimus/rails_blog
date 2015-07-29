@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   def blog
     @title = "Blog"
-    @posts = Post.most_recent_posts
+    @posts = Post.most_recent_posts.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /posts/1
