@@ -1,3 +1,4 @@
+
 <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -13,29 +14,29 @@
 
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :placeholder => "choose a title", class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :body %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area :body,:placeholder => "write your blog here...", rows: 8, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :summary %><br>
-    <%= f.text_field :summary %>
+    <%= f.text_field :summary, :placeholder => "tl;dr",class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :author_id %><br>
-    <%= f.number_field :author_id %>
+    <%= f.label :author_id %>
+    <%= f.select(:author_id, authors_to_select, {include_blank: "Choose an author"}, class: "form-control")  %>
   </div>
   <div class="field">
     <%= f.label :header_image %><br>
-    <%= f.text_field :header_image %>
+    <%= f.text_field :header_image, :placeholder => "Use space_1.jpg, space_2.jpg, etc. for now", class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :published %><br>
     <%= f.check_box :published %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Blog", class: "btn btn-primary" %>
   </div>
 <% end %>

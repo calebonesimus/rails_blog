@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :posts
 
-  get 'blog' => 'blog_list#index', as: :blog
+  get 'blog' => 'posts#blog', as: :blog
 
   get 'search(/:search)' => 'search#search', as: :search
 

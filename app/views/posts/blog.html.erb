@@ -1,0 +1,18 @@
+<% content_for :header do %>
+  <%= render(:partial => "jumbo_content" ,
+             :locals => { :title => "All Blogs",
+                          :summary => nil}) %>
+<% end %>
+
+
+<div class="container">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div>
+        <h3><%= link_to post.title, post_path(:id => post.id) %></h3>
+        <p><%= post.summary %></p>
+        <p>Posted on <%= post.created_at.strftime("%B %d, %Y") %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,15 +1,24 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
     @post = Post.last
+    @other_posts = Post.most_recent_posts.reject { |post| post == @post }[0..3]
+    @ad = Ad.ad_list.sample
+  end
+
+  def blog
+    @title = "Blog"
+    @posts = Post.most_recent_posts
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @other_posts = Post.most_recent_posts.reject { |post| post == @post }[0..3]
+    @ad = Ad.ad_list.sample
   end
 
   # GET /posts/new
