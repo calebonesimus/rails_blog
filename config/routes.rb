@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
-  get 'blog' => 'blog_list#index', as: :blog
+  resources :authors
+  resources :posts
+
+  get 'blog' => 'posts#blog', as: :blog
 
   get 'search(/:search)' => 'search#search', as: :search
 
-  get 'about' => 'about#index', as: :about
-
-  get 'posts/:id' => 'posts#show', as: :post
+  get 'authors/:id/posts' => 'authors#author_posts', as: :author_posts
 
   root 'posts#index'
 

@@ -1,8 +1,9 @@
 class SearchController < ApplicationController
+  layout false
+
   def search
-    @post = Post.most_recent_posts.first
+    @post = Post.most_recent_posts
     @title = "Search"
-    @other_posts = Post.most_recent_posts.reject { |post| post == @post }
     @posts = Post.all
   end
 end

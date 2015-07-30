@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @title || "Lipsums in Space?" %></title>
+  <title><%= @post.nil? ? "Lipsums in Space?" : @post.title %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   </style>
@@ -24,7 +24,8 @@
               <ul class="nav navbar-nav navbar-right">
                   <li><%= link_to "Home", root_path %></li>
                   <li><%= link_to "Blog", blog_path %></li>
-                  <li><%= link_to "About", about_path %></li>
+                  <li><%= link_to "Authors", authors_path %></li>
+                  <li><%= link_to "New Post", new_post_path %></li>
                   <%= form_tag search_path, :method => 'get', :class => "navbar-form navbar-left"  do %>
                     <div class="form-group">
                       <%= text_field_tag :search, params[:search], :class => "form-control" %>
@@ -35,58 +36,12 @@
           </div>
         </div>
       </nav>
-
-
-      <!-- Title and summary in jumbotron -->
-      <div class="container">
-        <div class="row text-center top-margin headline">
-          <h1><%= @post.title %></h1>
-          <h5><%= @post.summary %></h5>
-        </div>
-      </div>
+      <%= yield :header %>
     </div>
 
-    <div class="container">
-      <div class="row">
+    <%= yield %>
 
-        <div class="col-md-8">
-          <div class="row">
-            <div class="col-md-12">
-              <p><%= @post.author %> Published on <%= @post.created_at.strftime("%B %d, %Y") %></p>
-            </div>
-          </div>
-          <%= @post.body.html_safe %>
-        </div>
-
-        <div class="col-md-4 text-center">
-          <h3><%= @post.author %></h3>
-          <ul class="social-nav">
-            <li><%= link_to "Twitter", "#" %></li>
-            <li><%= link_to "Facebook", "#" %></li>
-            <li><%= link_to "Instagram", "#" %></li>
-          </ul>
-          <%= image_tag(@ad, class: "img-responsive") %>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Article image links -->
-    <div class="container text-center top-margin">
-      <div class="row">
-        <ul class="article-image-list">
-          <% @other_posts.each do |post| %>
-            <li>
-              <div class="col-md-3 article-images">
-                <%= link_to image_tag(post.header_image), post_path(:id => post.id)  %>
-                <p class="article-text"><%= post.title %></p>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-
+    <%= yield :bottom_articles %>
   </div>
 
   <!-- footer -->
@@ -98,7 +53,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to "Home", root_path %></li>
                 <li><%= link_to "Blog", blog_path %></li>
-                <li><%= link_to "About", about_path %></li>
+                <li><%= link_to "Authors", authors_path %></li>
             </ul>
         </div>
       </div>
